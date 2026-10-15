@@ -1,13 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 .gallery-page {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
-  background: #080808;
+  background: #070816;
   color: #f5f5f5;
   padding: 72px 24px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.gallery-page::before {
+  position: fixed;
+  z-index: -2;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 8%, rgba(119, 91, 255, 0.3), transparent 34%),
+    radial-gradient(ellipse at 86% 18%, rgba(39, 191, 255, 0.18), transparent 31%),
+    radial-gradient(ellipse at 55% 92%, rgba(255, 81, 174, 0.14), transparent 34%);
+  content: '';
+  pointer-events: none;
+}
+
+.gallery-page::after {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.34) 0.7px, transparent 0.7px);
+  background-size: 23px 23px;
+  content: '';
+  opacity: 0.1;
+  pointer-events: none;
 }
 
 .gallery-content {
+  position: relative;
   max-width: 1120px;
   margin: 0 auto;
+}
+
+.section-slider {
+  position: sticky;
+  z-index: 5;
+  top: 20px;
+  display: flex;
+  width: fit-content;
+  gap: 4px;
+  margin: 0 auto 80px;
+  padding: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.25), inset 0 1px rgba(255,255,255,0.25);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+.section-slider a {
+  position: relative;
+  z-index: 1;
+  padding: 10px 16px;
+  border-radius: 999px;
+  color: #d9dcf0;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.section-slider a:hover,
+.section-slider a:focus-visible {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.slider-glow {
+  position: absolute;
+  top: -20px;
+  left: 25%;
+  width: 90px;
+  height: 70px;
+  border-radius: 50%;
+  background: #8ca9ff;
+  opacity: 0.22;
+  filter: blur(24px);
+}
+
+.gallery-section,
+.instagram-section,
+.resume-section {
+  scroll-margin-top: 100px;
 }
 
 .gallery-kicker {
@@ -20,6 +100,10 @@
 .gallery-page h1 {
   margin: 12px 0;
   font-size: clamp(2.3rem, 6vw, 5rem);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.07em;
+  text-wrap: balance;
 }
 
 .gallery-description,
@@ -30,9 +114,8 @@
 }
 
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  column-count: 3;
+  column-gap: 18px;
   margin-top: 44px;
 }
 
@@ -40,10 +123,14 @@
   position: relative;
   display: block;
   width: 100%;
+  margin: 0 0 18px;
   padding: 0;
   overflow: hidden;
-  border: 1px solid #292929;
-  background: #111;
+  break-inside: avoid;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.2);
   color: inherit;
   text-align: left;
   cursor: pointer;
@@ -52,8 +139,7 @@
 .gallery-grid img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
   transition: transform 240ms ease;
 }
 
@@ -86,6 +172,19 @@
 .gallery-card-caption span {
   color: #d0d0d0;
   font-size: 0.86rem;
+}
+
+.gallery-card-caption strong,
+.gallery-modal-caption h2,
+.instagram-section h2,
+.resume-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
+.gallery-card-caption strong {
+  font-size: 1.05rem;
 }
 
 .gallery-modal {
@@ -170,9 +269,51 @@
   border-top: 1px solid #292929;
 }
 
+.section-fallback {
+  padding: 60px 0;
+  color: #a3a3a3;
+}
+
+@media (max-width: 780px) {
+  .gallery-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .gallery-page {
+    padding: 32px 16px;
+  }
+
+  .section-slider {
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 52px;
+  }
+
+  .section-slider a {
+    padding: 9px 10px;
+    font-size: 0.72rem;
+  }
+
+  .gallery-grid {
+    column-count: 1;
+  }
+}
+
 .instagram-section h2 {
   margin: 8px 0 28px;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
+  text-wrap: balance;
+}
+
+.instagram-section > .elfsight-app-1af05ea9-42aa-41bb-8e23-e36d7baf4fdb {
+  min-height: 180px;
+  padding: 24px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
 }
 
 .resume-section {
@@ -184,6 +325,7 @@
 .resume-section h2 {
   margin: 8px 0 28px;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
+  text-wrap: balance;
 }
 
 .resume-viewer {
@@ -193,10 +335,16 @@
   background: #222;
 }
 
-.resume-viewer iframe {
+.resume-viewer object,
+.resume-viewer embed {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.resume-fallback {
+  padding: 24px;
+  color: #c9c9c9;
 }
 
 .resume-download {

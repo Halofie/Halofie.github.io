@@ -40,6 +40,10 @@ build/Release
 
 # Dependency directories
 node_modules/
+*.local
+.env
+.env.*
+!.env.example/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
