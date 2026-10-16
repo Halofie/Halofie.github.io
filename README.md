@@ -19,7 +19,9 @@ npm run build
 
 Every push to `main` builds the app and deploys the `dist` directory to GitHub Pages through
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The [`CNAME`](CNAME) file keeps
-the custom domain attached to the deployed site.
+the custom domain attached to the deployed site. The build also creates `dist/404.html` from the
+application entry point so direct links such as `/gallery/<token>` are handled by the React app
+instead of returning GitHub Pages' default 404 page.
 
 ## Private interviewer galleries
 

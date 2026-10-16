@@ -147,9 +147,9 @@ function GalleryShell({ children }) {
 
 function SectionSlider() {
   const sections = [
-    ['gallery', 'Photo album'],
-    ['instagram', 'The photo lab'],
-    ['resume', 'About me'],
+    ['gallery', 'Gallery'],
+    ['instagram', 'Photography'],
+    ['resume', 'Resume'],
   ];
 
   return (
